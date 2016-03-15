@@ -9,16 +9,21 @@
 	/*
 	 * Coordinates for user id 1
 	 */
-	$cordinates = getLocations(3);
+	$cordinates = getLocations(1);
 	$cordinates = mysqli_fetch_assoc($cordinates);
+	
+	$data = array();
+	$x = getLocations(2);
+	while($row = mysqli_fetch_assoc($x)){
+		$data[] = $row;
+	}
+	
+	
 	?>
 
 <!DOCTYPE html>
 <script type="text/javascript" src="js/map.js"></script>
-	<script>
-  		var latitude = <?php echo floatval($cordinates['latitude']);?>;
-  		var longitude = <?php echo floatval($cordinates['longitude']);?>;
-	</script>
+
 <div id = "main">
 	
 	
@@ -40,6 +45,14 @@
 	
 	<!-- Invoking maps-->
 	<script type="text/javascript" src="js/map.js"></script>
+		<script>
+  		var latitude = <?php echo floatval($cordinates['latitude']);?>;
+  		var longitude = <?php echo floatval($cordinates['longitude']);?>;
+
+		var json = <?php echo json_encode($data)?>
+
+
+	</script> 
 </div>
 	
 	
